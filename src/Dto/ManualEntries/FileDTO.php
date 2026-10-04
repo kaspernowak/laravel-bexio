@@ -23,14 +23,12 @@ class FileDTO extends Data
         public ?string $source_type = null,
         public ?string $uuid = null,
         public ?string $uploader_email = null,
-        public ?string $processing_source = null,
-        public ?string $processing_status = null
     ) {}
 
     public static function fromResponse(Response $response): self
     {
         if ($response->failed()) {
-            throw new \Exception('Failed to create DTO from Response');
+            throw new Exception('Failed to create DTO from Response');
         }
 
         $data = $response->json();
@@ -58,8 +56,6 @@ class FileDTO extends Data
             source_type: Arr::get($data, 'source_type'),
             uuid: Arr::get($data, 'uuid'),
             uploader_email: Arr::get($data, 'uploader_email'),
-            processing_source: Arr::get($data, 'processing_source'),
-            processing_status: Arr::get($data, 'processing_status'),
         );
     }
 }

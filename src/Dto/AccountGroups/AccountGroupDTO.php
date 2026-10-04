@@ -11,6 +11,7 @@ class AccountGroupDTO extends Data
 {
     public function __construct(
         public int $id,
+        public string $uuid,
         public string $account_no,
         public string $name,
         public bool $is_active,
@@ -21,7 +22,7 @@ class AccountGroupDTO extends Data
     public static function fromResponse(Response $response): self
     {
         if ($response->failed()) {
-            throw new \Exception('Failed to create DTO from Response');
+            throw new Exception('Failed to create DTO from Response');
         }
 
         $data = $response->json();
@@ -37,6 +38,7 @@ class AccountGroupDTO extends Data
 
         return new self(
             id: Arr::get($data, 'id'),
+            uuid: Arr::get($data, 'uuid'),
             account_no: Arr::get($data, 'account_no'),
             name: Arr::get($data, 'name'),
             is_active: Arr::get($data, 'is_active'),

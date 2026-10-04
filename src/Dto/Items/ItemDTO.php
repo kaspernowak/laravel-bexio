@@ -14,7 +14,6 @@ class ItemDTO extends Data
         public int $user_id,
         public int $article_type_id,
         public ?int $contact_id,
-        public ?int $master_id,
         public ?string $deliverer_code,
         public ?string $deliverer_name,
         public ?string $deliverer_description,
@@ -55,7 +54,7 @@ class ItemDTO extends Data
     public static function fromResponse(Response $response): self
     {
         if ($response->failed()) {
-            throw new \Exception('Failed to create DTO from Response');
+            throw new Exception('Failed to create DTO from Response');
         }
 
         $data = $response->json();
@@ -74,7 +73,6 @@ class ItemDTO extends Data
             user_id: Arr::get($data, 'user_id'),
             article_type_id: Arr::get($data, 'article_type_id'),
             contact_id: Arr::get($data, 'contact_id'),
-            master_id: Arr::get($data, 'master_id'),
             deliverer_code: Arr::get($data, 'deliverer_code'),
             deliverer_name: Arr::get($data, 'deliverer_name'),
             deliverer_description: Arr::get($data, 'deliverer_description'),

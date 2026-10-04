@@ -11,8 +11,8 @@ class ContactRelationDTO extends Data
 {
     public function __construct(
         public int $id,
-        public int $contact_id,
-        public int $contact_sub_id,
+        public ?int $contact_id,
+        public ?int $contact_sub_id,
         public ?string $description,
         public ?string $updated_at,
     ) {}
@@ -20,7 +20,7 @@ class ContactRelationDTO extends Data
     public static function fromResponse(Response $response): self
     {
         if ($response->failed()) {
-            throw new \Exception('Failed to create DTO from Response');
+            throw new Exception('Failed to create DTO from Response');
         }
 
         $data = $response->json();

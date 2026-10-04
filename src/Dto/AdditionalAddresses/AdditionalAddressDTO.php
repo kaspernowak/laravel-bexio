@@ -15,7 +15,7 @@ class AdditionalAddressDTO extends Data
         public ?string $name_addition,
         public string $subject,
         public string $description,
-        public ?string $address = null, // deprecated
+        public ?string $address = null,
         public ?string $street_name = null,
         public ?string $house_number = null,
         public ?string $address_addition = null,
@@ -27,7 +27,7 @@ class AdditionalAddressDTO extends Data
     public static function fromResponse(Response $response): self
     {
         if ($response->failed()) {
-            throw new \Exception('Failed to create DTO from Response');
+            throw new Exception('Failed to create DTO from Response');
         }
 
         $data = $response->json();
